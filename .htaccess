@@ -1,0 +1,7 @@
+Options +FollowSymLinks
+RewriteEngine On
+RewriteRule ^glume/([0-9]+)$ glume/index.php?page=$1 [NC,L]
+RewriteRule ^gluma/([0-9]+)$ glume/single.php?id=$1 [NC,L]
+
+
+# RewriteRule ^single/([0-9]+)/(.*)$ single.php?id=$1&nav=$2 [NC,L]

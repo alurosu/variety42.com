@@ -1,0 +1,144 @@
+* {
+	background-color: #fff;
+}
+body {
+	font-family: 'Roboto', sans-serif;
+	padding: 0 0 1em 0;
+	font-weight: 400;
+	font-size: 1.3rem;
+	line-height: 1.8;
+	text-align: justify;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-font-smoothing: antialiased !important;
+    text-rendering: optimizelegibility !important;
+    letter-spacing: .03em;
+	color: #333;
+	margin: 0;
+}
+div {
+	margin: 0 auto;
+}
+h1 {
+	font-size: 1.5em;
+	font-weight: bold;
+	margin-bottom: 5px;
+	letter-spacing: .05em
+}
+a {
+	color: green;
+	text-decoration: none;
+}
+.clear {
+	clear: both;
+}
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
+.menu {
+	position: fixed;
+    width: 100%;
+    z-index: 999;
+	border-bottom: 1px solid #ddd;
+}
+.menu .logo img {
+	height: 2.5em;
+    vertical-align: middle;
+    padding: .2em 1em;
+}
+.menu ul {
+	margin: 0;
+	padding: 0;
+	float: right;
+}
+.menu li {
+	display: inline-block;
+	list-style: none;
+	cursor: pointer;
+}
+.menu li a {
+	color: #333;
+	text-decoration: none;
+	padding: .9em;
+	display: inline-block;
+}
+.menu li a:hover path{
+	fill: green;
+}
+.menu svg {
+	height: 1em;
+}
+.wrapper {
+	max-width: 1000px;
+    padding: 3em .8em 1em .8em;
+}
+.single .nav {
+	text-align: center;
+    font-size: .8em;
+	padding-bottom: .5em;
+}
+.single .nav a {
+	text-decoration: none;
+	padding: 0 .3em;
+}
+.single .nav .random {
+	padding: 0 3.5em;
+}
+.single .nav svg{
+	height: 1em;
+	vertical-align: middle;
+}
+.single .nav svg path {
+	fill: #666;
+}
+.single .nav a:hover svg path {
+	fill: green;
+}
+.single .content {
+	padding: 2em 0;
+}
+.single .meta {
+	border-top: 1px solid #ddd;
+	padding: 1em 0;
+	font-size: .7em;
+}
+.meta .date {
+	color: #666;
+	font-size: .8em;
+}
+.single .meta .like, .single .meta .dislike, .single .meta .share {
+	float: right;
+	padding-left: 1em;
+	cursor: pointer;
+}
+.single .meta svg {
+	width: 1em;
+	padding: 0 .1em;
+	vertical-align: middle;
+}
+.single .meta svg path {
+	fill: #666;
+}
+.single .meta > div:hover svg path {
+	fill: green;
+}
+.single .meta .tags {
+	margin-top: .5em;
+    margin-left: -0.3em;
+	clear: both;
+}
+.single .meta .tags a {
+	background-color: rgba(0,0,0,.05);
+	border-radius: 1em;
+    display: inline-block;
+    padding: 0 1em;
+	text-decoration: none;
+    font-size: .8em;
+    color: #333;
+}
+.single .meta .tags a:hover {
+	background-color: rgba(0,0,0,.25);
+}
