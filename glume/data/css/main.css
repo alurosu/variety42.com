@@ -44,6 +44,10 @@ a {
     z-index: 999;
 	border-bottom: 1px solid #ddd;
 }
+.menu .logo {
+	padding: .5em 0 .5em 1em;
+	display: inline-block;
+}
 .menu .logo img {
 	height: 2.5em;
     vertical-align: middle;
@@ -109,10 +113,27 @@ a {
 	color: #666;
 	font-size: .8em;
 }
-.single .meta .like, .single .meta .dislike, .single .meta .share {
+.single .meta .like, .single .meta .dislike, .single .meta .share, .single.list .meta .comments {
 	float: right;
 	padding-left: 1em;
 	cursor: pointer;
+}
+.single.list .meta .comments {
+	 margin-right: 2em;
+	 padding-right: 1em;
+	 float:left;
+}
+
+.single.list .meta .dislike, .single.list .meta .like {
+    float: none;
+    display: inline-block;
+}
+.single.list .meta .dislike{
+	padding-left: .5em;
+	padding-right: 1em;
+}
+.single.list .meta .like {
+	padding-right: .5em;
 }
 .single .meta svg {
 	width: 1em;
@@ -141,4 +162,48 @@ a {
 }
 .single .meta .tags a:hover {
 	background-color: rgba(0,0,0,.25);
+}
+
+.pagination {
+	font-size: .7em;
+    padding-top: 2em;
+}
+.pagination > * {
+	padding: 0 .3em;
+    display: inline-block;
+	border: 1px solid green;
+	border-radius: 3px;
+    margin: 0 .2em;
+    min-width: 1.5em;
+    text-align: center;
+	background: green;
+	color: #fff;
+}
+.pagination > a {
+	border-color: #dbe6db;
+	background: #f0f5f0;
+	color: green;
+}
+.pagination > a:hover {
+	border-color: green;
+	background: green;
+	color: #fff;
+}
+
+.single.list .meta {
+    border-top: 0;
+    border-bottom: 1px solid #ddd;
+    padding: .5em 0;
+    line-height: 1em;
+	text-align: center;
+	height: 0;
+}
+.single.list .content {
+    padding: .5em 0 .5em 0;
+}
+.single.list {
+    margin-top: 4em;
+}
+.single.list:first-child {
+    margin-top: 1.5em;
 }

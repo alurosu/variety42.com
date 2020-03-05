@@ -10,7 +10,8 @@ if ($conn->connect_error) {
 if (is_numeric($_GET["id"]))
     $id = $_GET["id"];
 else {
-    header("Location: ".$config->folder."/random", true, 301);
+    header( 'Cache-Control: no-cache, must-revalidate' );
+    header("Location: ".$config->folder."/r", true, 307);
     exit();
 }
 
@@ -23,7 +24,7 @@ if ($result->num_rows > 0) {
     // generate meta
     $domain = $_SERVER[HTTP_HOST];
     $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-    $raw = trim(preg_replace('/\s+/', ' ', stripslashes($single["text"])));
+    $raw = str_replace('"',"'", trim(preg_replace('/\s+/', ' ', stripslashes($single["text"]))));
     $end = " Read more at ".$domain;
 
     // keep title under 50 chars
@@ -42,7 +43,8 @@ if ($result->num_rows > 0) {
             $description = substr($raw,0,$pos)."..".$end;
     }
 } else {
-    header("Location: ".$config->folder."/random", true, 301);
+    header( 'Cache-Control: no-cache, must-revalidate' );
+    header("Location: ".$config->folder."/r", true, 307);
     exit();
 }
 
@@ -107,7 +109,7 @@ if ($result->num_rows > 0) {
                 </a>
             <?php } ?>
             <div class="random">
-                <a href="<?php echo $config->folder;?>/random">
+                <a href="<?php echo $config->folder;?>/r">
                     <svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M592 192H473.26c12.69 29.59 7.12 65.2-17 89.32L320 417.58V464c0 26.51 21.49 48 48 48h224c26.51 0 48-21.49 48-48V240c0-26.51-21.49-48-48-48zM480 376c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm-46.37-186.7L258.7 14.37c-19.16-19.16-50.23-19.16-69.39 0L14.37 189.3c-19.16 19.16-19.16 50.23 0 69.39L189.3 433.63c19.16 19.16 50.23 19.16 69.39 0L433.63 258.7c19.16-19.17 19.16-50.24 0-69.4zM96 248c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm128 128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm0-128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm0-128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm128 128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24z"></path></svg>
                 </a>
             </div>
@@ -127,14 +129,23 @@ if ($result->num_rows > 0) {
                 <span><?php echo $single["likes"]; ?></span>
             </div>
             <div class="author">
-                by <a href="#"><?php echo $single["author"]; ?></a>
+                by <a href="/u/<?php echo $single["author"]; ?>"><?php echo $single["author"]; ?></a>
             </div>
             <div class="date">
                 <?php echo date("d M, Y", $single["date"]); ?>
             </div>
             <div class="tags">
-                <a href="#">English</a>
-                <a href="#">Chuck Norris</a>
+                <?php
+                $sql = 'SELECT t.name as name, t.id as id FROM content_tags ct, tags t WHERE ct.tag_id = t.id AND ct.content_id = '.$id;
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    // output data of each row
+                    while($tag = $result->fetch_assoc()) { ?>
+                        <a href="<?php echo $config->folder;?>/t/<?php echo $tag['id'];?>"><?php echo $tag['name']; ?></a>
+                    <?php }
+                }
+                ?>
             </div>
         </div>
     </div>
