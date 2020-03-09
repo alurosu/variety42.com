@@ -83,6 +83,9 @@ single2image($id, stripslashes($single["text"]));
 	<meta property="og:title" content="<?php echo $title; ?>">
 	<meta property="og:description" content="<?php echo $description; ?>">
 	<meta property="og:image" content="https://variety42.com<?php echo $config->folder."/data/img/".$id;?>.jpg">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:type" content="website" />
 	<meta property="fb:app_id" content="649162062152755"/>
 
 	<link rel="shortcut icon" href="/favicon.png" />
@@ -94,6 +97,7 @@ single2image($id, stripslashes($single["text"]));
 <body>
     <?php require_once("data/php/menu.php"); ?>
     <div class="wrapper single">
+        <!-- <img src="<?php echo $config->folder."/data/img/".$id;?>.jpg" alt=""> -->
         <div class="content">
             <?php echo nl2br(stripslashes($single["text"])); ?>
         </div>

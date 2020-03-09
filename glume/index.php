@@ -40,7 +40,7 @@ if ($conn->connect_error) {
     <div class="wrapper">
         <?php
         $nr_per_page = 42;
-        $sql = 'SELECT id, text, likes, dislikes, comments_count FROM content ORDER BY id LIMIT '.($page-1)*$nr_per_page.', '.$nr_per_page;
+        $sql = 'SELECT id, text, likes, dislikes, comments_count FROM content ORDER BY date DESC LIMIT '.($page-1)*$nr_per_page.', '.$nr_per_page;
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
