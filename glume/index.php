@@ -1,6 +1,7 @@
 <?php
 require_once('config.php');
 require_once('data/php/single.php');
+require_once('data/php/pagination.php');
 $page = 1;
 if(is_numeric($_GET['page']) && $_GET['page'] > 0){
     $page = $_GET['page'];
@@ -18,17 +19,17 @@ if ($conn->connect_error) {
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Jokes</title>
-	<meta name="description" content="Java Edition 1.15.2 open to all, including non-premium users. Grief protection and always up to date.">
+	<title><?php echo $config->seo->firstPage->title; ?></title>
+	<meta name="description" content="<?php echo $config->seo->firstPage->description; ?>">
 
-	<meta property="og:title" content="Vanilla Minecraft Server - Among Demons">
-	<meta property="og:url" content="https://amongdemons.com/minecraft/">
+	<meta property="og:title" content="<?php echo $config->seo->firstPage->title; ?>">
+	<meta property="og:url" content="<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";?>">
 	<meta property="og:type" content="website" />
-	<meta property="og:description" content="Java Edition 1.15.2 open to all, including non-premium users. Grief protection and always up to date.">
+	<meta property="og:description" content="<?php echo $config->seo->firstPage->description; ?>">
 	<meta property="og:image" content="https://amongdemons.com/minecraft/data/img/amongdemons_minecraft_fb.png">
 	<meta property="fb:app_id" content="649162062152755"/>
 
-	<link rel="shortcut icon" href="https://amongdemons.com/minecraft/data/img/AmongDemons_LogoSquare.png" />
+	<link rel="shortcut icon" href="/favicon.png" />
 	<link rel="stylesheet" href="data/css/main.css" />
 
 	<script type="text/javascript" src="data/js/main.js"></script>
@@ -57,51 +58,8 @@ if ($conn->connect_error) {
         echo pagination($total['count'], $config->folder);
         ?>
     </div>
+
+    <?php require_once('data/php/footer.php'); ?>
 </body>
 </html>
-<?php
-function pagination($count, $href) {
-    global $nr_per_page, $page;
-    $output = '<div class="pagination">';
-    if(!isset($page)) $page = 1;
-
-    if($nr_per_page != 0)
-        $pages  = ceil($count/$nr_per_page);
-
-    //if pages exists after loop's lower limit
-    if($pages>1) {
-        if(($page-3)>0) {
-            $output = $output . '<a href="' . $href . '/1" class="page">1</a>';
-        }
-        if(($page-3)>1) {
-            $output = $output . '...';
-        }
-
-        //Loop for provides links for 2 pages before and after current page
-        for($i=($page-2); $i<=($page+2); $i++)	{
-            if($i<1) continue;
-
-            if($i>$pages) break;
-
-            if($page == $i)
-                $output = $output . '<span id='.$i.' class="current">'.$i.'</span>';
-            else
-                $output = $output . '<a href="' . $href . "/".$i . '" class="page">'.$i.'</a>';
-        }
-
-        //if pages exists after loop's upper limit
-        if(($pages-($page+2))>1) {
-            $output = $output . '...';
-        }
-        if(($pages-($page+2))>0) {
-            if($page == $pages)
-                $output = $output . '<span id=' . ($pages) .' class="current">' . ($pages) .'</span>';
-            else
-                $output = $output . '<a href="' . $href .  "/" .($pages) .'" class="page">' . ($pages) .'</a>';
-        }
-    }
-    $output .= '</div>';
-    return $output;
-}
-
-$conn->close(); ?>
+<?php $conn->close(); ?>

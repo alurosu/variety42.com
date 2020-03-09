@@ -65,6 +65,10 @@ if ($result->num_rows > 0) {
     $nav = $result->fetch_assoc();
     $next = $nav["id"];
 }
+
+// generate image
+require_once('data/php/single2image.php');
+single2image($id, stripslashes($single["text"]));
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -77,13 +81,11 @@ if ($result->num_rows > 0) {
 	<meta name="description" content="<?php echo $description; ?>">
 
 	<meta property="og:title" content="<?php echo $title; ?>">
-	<meta property="og:url" content="<?php echo $url; ?>">
-	<meta property="og:type" content="website" />
 	<meta property="og:description" content="<?php echo $description; ?>">
-	<meta property="og:image" content="https://amongdemons.com/minecraft/data/img/amongdemons_minecraft_fb.png">
+	<meta property="og:image" content="https://variety42.com<?php echo $config->folder."/data/img/".$id;?>.jpg">
 	<meta property="fb:app_id" content="649162062152755"/>
 
-	<link rel="shortcut icon" href="https://amongdemons.com/minecraft/data/img/AmongDemons_LogoSquare.png" />
+	<link rel="shortcut icon" href="/favicon.png" />
 	<link rel="stylesheet" href="<?php echo $config->folder;?>/data/css/main.css" />
 
 	<script type="text/javascript" src="<?php echo $config->folder;?>/data/js/main.js"></script>
