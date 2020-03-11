@@ -30,9 +30,10 @@ if ($conn->connect_error) {
 	<meta property="fb:app_id" content="649162062152755"/>
 
 	<link rel="shortcut icon" href="/favicon.png" />
-	<link rel="stylesheet" href="data/css/main.css" />
+	<link rel="stylesheet" href="<?php echo $config->folder;?>/data/css/main.css" />
 
-	<script type="text/javascript" src="data/js/main.js"></script>
+	<script type="text/javascript" src="<?php echo $config->folder;?>/data/js/jquery.js"></script>
+	<script type="text/javascript" src="<?php echo $config->folder;?>/data/js/main.js"></script>
 </head>
 
 <body>

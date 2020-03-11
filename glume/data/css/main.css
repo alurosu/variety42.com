@@ -123,7 +123,6 @@ a {
 	 padding-right: 1em;
 	 float:left;
 }
-
 .single.list .meta .dislike, .single.list .meta .like {
     float: none;
     display: inline-block;
@@ -207,4 +206,72 @@ a {
 }
 .single.list:first-child {
     margin-top: 1.5em;
+}
+.share-buttons {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: rgba(0,0,0,.25);
+	z-index: 999;
+}
+.share-buttons.hide {
+	display: none;
+}
+.share-buttons-box {
+	padding: .5em .9em 1em .9em;
+	border: 1px solid #ccc;
+	background: #fff;
+	margin: auto;
+}
+.share-buttons-box .title {
+	font-size: 0.9em;
+}
+.share-buttons-box .close {
+	float: right;
+	cursor: pointer;
+	color: #666;
+	font-size:1.2em;
+    line-height: 1em;
+}
+.share-buttons-box ul {
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+.share-buttons-box li {
+	list-style: none;
+	display: inline-block;
+}
+.share-buttons-box li a {
+	display: inline-block;
+    padding: .5em .2em 1em .2em;
+}
+.share-buttons-box li:first-child a {
+	padding-left:0;
+}
+.share-buttons-box li:last-child a {
+	padding-right:0;
+}
+.share-buttons-box li a img {
+	width: 2.5em;
+}
+.share-buttons-box .share-url-box{
+	background: #fafafa;
+	border: 1px solid #ccc;
+    line-height: 2em;
+}
+.share-buttons-box input {
+	width: 75%;
+	border: 0px;
+	background: #fafafa;
+	padding: .5em 0 .5em .5em;
+}
+.share-buttons-box .share-url-copy {
+	font-size: .7em;
+    width: 20%;
+    text-align: center;
+    display: inline-block;
 }
