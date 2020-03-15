@@ -48,3 +48,14 @@
         </div>
     </div>
 </div>
+
+<div class="error hide">
+    <div class="error-box">
+        <div class="message">
+            This is a demo error message.
+        </div>
+        <div class="close">
+            Got it
+        </div>
+    </div>
+</div>

@@ -106,7 +106,7 @@ a {
 	fill: green;
 }
 .single .content {
-	padding: 2em 0;
+	padding: 0 0 2em 0;
 }
 .single .meta {
 	border-top: 1px solid #ddd;
@@ -117,16 +117,20 @@ a {
 	color: #666;
 	font-size: .8em;
 }
-.single .meta .like, .single .meta .dislike, .single .meta .share, .single.list .meta .comments {
+.single .meta .like, .single .meta .dislike, .single .meta .share, .single.list .meta .link {
 	float: right;
 	padding-left: 1em;
 	cursor: pointer;
 	background-color: #fff;
 }
-.single.list .meta .comments {
+.single.list .meta .link {
 	 margin-right: 2em;
 	 padding-right: 1em;
 	 float:left;
+	 padding-top: .1em;
+}
+.single.list .meta .link:hover path {
+	fill: green;
 }
 .single.list .meta .dislike, .single.list .meta .like {
     float: none;
@@ -196,7 +200,6 @@ a {
 
 .pagination {
 	font-size: .7em;
-    padding-top: 4em;
     text-align: center;
 }
 .pagination > * {
@@ -233,32 +236,43 @@ a {
     padding: .5em 0 .5em 0;
 }
 .single.list {
-    margin-top: 4em;
+	padding-bottom: 4em;
 }
 .single.list:first-child {
     margin-top: 1.5em;
 }
-.share-buttons {
+.share-buttons, .error {
 	display: flex;
 	width: 100%;
 	height: 100%;
 	position: fixed;
 	top: 0;
 	left: 0;
-	background: rgba(0,0,0,.25);
+	background: rgba(0,0,0,.5);
 	z-index: 999;
 }
-.share-buttons.hide {
+.share-buttons.hide, .error.hide {
 	display: none;
 }
-.share-buttons-box {
+.share-buttons-box, .error-box {
 	padding: .5em .9em 1em .9em;
 	border: 1px solid #ccc;
 	background: #fff;
 	margin: auto;
 }
+.error-box {
+	padding-bottom: .5em;
+}
 .share-buttons-box .title {
 	font-size: 0.9em;
+}
+.error-box .close {
+	color: green;
+	cursor: pointer;
+	text-align: center;
+	font-size: .8em;
+	font-weight: bold;
+	margin-top: .5em;
 }
 .share-buttons-box .close {
 	float: right;
@@ -308,4 +322,49 @@ a {
     width: 20%;
     text-align: center;
     display: inline-block;
+}
+.breadcrumbs ul li {
+    list-style: none;
+    display: inline-block;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+.breadcrumbs ul {
+    padding-left: 0;
+}
+.breadcrumbs ul li svg {
+    height: .8em;
+    line-height: 1em;
+    vertical-align: middle;
+    padding-bottom: 0.1em;
+    padding-left: .2em;
+    padding-right: .2em;
+    color: #5f5f5f;
+}
+.breadcrumbs ul li svg.home {
+    height: 1em;
+    padding-bottom: .2em;
+}
+.breadcrumbs ul li:hover svg.home path{
+    fill: green;
+}
+#search_input {
+    padding: .2em 1em;
+    font-size: 1em;
+    color: #666;
+    outline: 0;
+	background: #fafafa;
+	border: 0;
+}
+#search_form{
+	background: #fafafa;
+    border: 1px solid #ccc;
+    line-height: 2em;
+	display: inline-block;
+}
+#search_form svg{
+    text-align: center;
+    display: inline-block;
+	padding-right: 1em;
+	cursor: pointer;
 }

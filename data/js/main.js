@@ -16,6 +16,10 @@ jQuery(document).ready(function(){
         jQuery(".share-buttons").addClass("hide");
     });
 
+    jQuery(".error-box .close").click(function(){
+        jQuery(".error").addClass("hide");
+    });
+
     jQuery(".share-url-copy").click(function(e){
         e.preventDefault();
         var copyText = document.getElementById("share-url");
@@ -35,6 +39,13 @@ jQuery(document).ready(function(){
         vote(joke, "down");
     });
 
+    jQuery("#search_form").submit(function(e) {
+        e.preventDefault();
+        window.location.href = jQuery(this).attr("action")+jQuery('#search_input').val();
+    });
+    jQuery("#search_form svg").click(function() {
+        jQuery("#search_form").submit();
+    });
     function vote(joke, direction) {
         if (!joke.hasClass("disabled")) {
             if (direction=="up")
@@ -48,7 +59,8 @@ jQuery(document).ready(function(){
                     var count = parseInt(joke.find("span").html())+1;
                     joke.find("span").html(count);
                 } else {
-                    alert("You voted for this joke in the last 24h.");
+                    jQuery(".error .message").html("You voted for this joke in the last 24h.");
+                    jQuery(".error").removeClass("hide");
                     joke.removeClass("active");
                 }
             });
@@ -60,5 +72,10 @@ jQuery(document).mouseup(function(e) {
     var shareBox = $(".share-buttons-box");
     if (!shareBox.is(e.target) && shareBox.has(e.target).length === 0) {
         jQuery(".share-buttons").addClass("hide");
+    }
+
+    var errorBox = $(".error-box");
+    if (!errorBox.is(e.target) && errorBox.has(e.target).length === 0) {
+        jQuery(".error").addClass("hide");
     }
 });
