@@ -1,6 +1,11 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+}
 body {
 	font-family: 'Roboto', sans-serif;
-	padding: 0 0 1em 0;
 	font-weight: 400;
 	font-size: 1.3rem;
 	line-height: 1.8;
@@ -142,9 +147,35 @@ a {
 .single .meta svg path {
 	fill: #666;
 }
-.single .meta > div:hover svg path {
+.single .meta .like:not(.disabled):hover svg path {
 	fill: green;
 }
+.single .meta .dislike:not(.disabled):hover svg path {
+	fill: DarkRed;
+}
+.single .meta svg .hover {
+	display: none;
+}
+
+.single .meta .active svg path {
+	display: none;
+}
+.single .meta .active svg .hover {
+	display: inherit;
+}
+.single .meta .like.active {
+	color: green;
+}
+.single .meta .like.active svg path {
+	fill: green;
+}
+.single .meta .dislike.active {
+	color: DarkRed;
+}
+.single .meta .dislike.active svg path {
+	fill: DarkRed;
+}
+
 .single .meta .tags {
 	margin-top: .5em;
     margin-left: -0.3em;
@@ -268,6 +299,9 @@ a {
 	border: 0px;
 	background: #fafafa;
 	padding: .5em 0 .5em .5em;
+}
+.share-buttons-box input:focus {
+    outline-width: 0;
 }
 .share-buttons-box .share-url-copy {
 	font-size: .7em;

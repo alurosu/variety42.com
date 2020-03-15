@@ -1,7 +1,7 @@
 <?php
 require_once('config.php');
-require_once('data/php/single.php');
-require_once('data/php/pagination.php');
+require_once('../data/php/single.php');
+require_once('../data/php/pagination.php');
 $page = 1;
 if(is_numeric($_GET['page']) && $_GET['page'] > 0){
     $page = $_GET['page'];
@@ -30,10 +30,10 @@ if ($conn->connect_error) {
 	<meta property="fb:app_id" content="649162062152755"/>
 
 	<link rel="shortcut icon" href="/favicon.png" />
-	<link rel="stylesheet" href="<?php echo $config->folder;?>/data/css/main.css" />
+	<link rel="stylesheet" href="/data/css/main.css" />
 
-	<script type="text/javascript" src="<?php echo $config->folder;?>/data/js/jquery.js"></script>
-	<script type="text/javascript" src="<?php echo $config->folder;?>/data/js/main.js"></script>
+	<script type="text/javascript" src="/data/js/jquery.js"></script>
+	<script type="text/javascript" src="/data/js/main.js"></script>
 </head>
 
 <body>
@@ -41,13 +41,13 @@ if ($conn->connect_error) {
     <div class="wrapper">
         <?php
         $nr_per_page = 42;
-        $sql = 'SELECT id, text, likes, dislikes, comments_count FROM content ORDER BY date DESC LIMIT '.($page-1)*$nr_per_page.', '.$nr_per_page;
+        $sql = 'SELECT id, text, likes, dislikes FROM content ORDER BY date DESC LIMIT '.($page-1)*$nr_per_page.', '.$nr_per_page;
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
             // output data of each row
             while($row = $result->fetch_assoc()) {
-                displaySingle($row['text'], $row['id'], $row['likes'], $row['dislikes'], $row['comments_count']);
+                displaySingle($row['text'], $row['id'], $row['likes'], $row['dislikes']);
             }
         } else {
             echo "0 results";

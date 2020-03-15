@@ -18,27 +18,27 @@
         <ul>
             <li>
                 <a href="#" title="Share on Facebook" target="_blank" class="facebook">
-                    <img alt="Share on Facebook" src="/img/share/Facebook.svg" />
+                    <img alt="Share on Facebook" src="/data/img/share/Facebook.svg" />
                 </a>
             </li>
             <li>
                 <a href="#" target="_blank" title="Tweet" class="twitter">
-                    <img alt="Tweet" src="/img/share/Twitter.svg" />
+                    <img alt="Tweet" src="/data/img/share/Twitter.svg" />
                 </a>
             </li>
             <li>
                 <a href="#" target="_blank" title="Submit to Reddit" class="reddit">
-                    <img alt="Submit to Reddit" src="/img/share/Reddit.svg" />
+                    <img alt="Submit to Reddit" src="/data/img/share/Reddit.svg" />
                 </a>
             </li>
             <li>
                 <a href="#" target="_blank" title="Share on LinkedIn" class="linkedin">
-                    <img alt="Share on LinkedIn" src="/img/share/LinkedIn.svg" />
+                    <img alt="Share on LinkedIn" src="/data/img/share/LinkedIn.svg" />
                 </a>
             </li>
             <li>
                 <a href="#" target="_blank" title="Send email" class="email">
-                    <img alt="Send email" src="/img/share/Email.svg" />
+                    <img alt="Send email" src="/data/img/share/Email.svg" />
                 </a>
             </li>
         </ul>
