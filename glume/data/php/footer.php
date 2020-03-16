@@ -59,3 +59,19 @@
         </div>
     </div>
 </div>
+<div class="footer">
+    <ul>
+        <li>
+            <a href="/glume">Jokes</a> -
+        </li>
+        <li>
+            <a href="/glume">Quotes</a> -
+        </li>
+        <li>
+            <a href="/glume">Glume</a>
+        </li>
+    </ul>
+    <div class="copyright">
+        Copyright 2020 © variety42.com
+    </div>
+</div>

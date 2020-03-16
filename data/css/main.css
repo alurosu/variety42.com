@@ -3,6 +3,8 @@ html, body {
 	padding: 0;
 	width: 100%;
 	height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 body {
 	font-family: 'Roboto', sans-serif;
@@ -262,6 +264,7 @@ a {
 }
 .error-box {
 	padding-bottom: .5em;
+    max-width: 80%;
 }
 .share-buttons-box .title {
 	font-size: 0.9em;
@@ -367,4 +370,21 @@ a {
     display: inline-block;
 	padding-right: 1em;
 	cursor: pointer;
+}
+.footer {
+	margin-top: auto;
+	padding-top: 2em;
+	font-size: .9em;
+}
+.footer ul {
+	margin: 0;
+	padding: 0;
+}
+.footer li {
+	display: inline-block;
+}
+.copyright {
+	padding: 1em 0;
+    font-size: .6em;
+	text-align: center;
 }
