@@ -84,6 +84,8 @@ a {
 .wrapper {
 	max-width: 1000px;
     padding: 3em .8em 1em .8em;
+	width: 100%;
+	box-sizing: border-box;
 }
 .single .nav {
 	text-align: center;
@@ -117,7 +119,6 @@ a {
 }
 .meta .date {
 	color: #666;
-	font-size: .8em;
 }
 .single .meta .like, .single .meta .dislike, .single .meta .share, .single.list .meta .link {
 	float: right;
@@ -370,6 +371,28 @@ a {
     display: inline-block;
 	padding-right: 1em;
 	cursor: pointer;
+}
+.breadcrumbs ul li.empty_search {
+	display: block;
+    padding-top: 3em;
+}
+.breadcrumbs ul li.empty_search #search_form {
+	display: block;
+	font-size: 1.5em;
+}
+.breadcrumbs ul li.empty_search #search_form svg {
+    float: right;
+    padding-top: .45em;
+	padding-right: .5em;
+    font-size: 1.3em;
+}
+.breadcrumbs ul li.empty_search #search_input{
+	width: 80%;
+	box-sizing: border-box;
+	padding: .5em;
+}
+.breadcrumbs ul li.empty_search span {
+	display: none;
 }
 .footer {
 	margin-top: auto;

@@ -13,9 +13,11 @@ if ($conn->connect_error) {
 }
 $term = '';
 $meta_term = '';
+$empty_search = true;
 if(!empty($_GET['s'])){
     $term = $conn->real_escape_string($_GET['s']);
     $meta_term = ': '.$term;
+    $empty_search = false;
 }
 ?>
 
@@ -26,11 +28,9 @@ if(!empty($_GET['s'])){
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<title><?php echo sprintf($config->seo->searchPage->title, $meta_term, $page); ?></title>
-	<meta name="description" content="<?php echo sprintf($config->seo->searchPage->description, $term); ?>">
 
 	<meta property="og:title" content="<?php echo sprintf($config->seo->searchPage->title, $meta_term , $page); ?>">
 	<meta property="og:type" content="website" />
-	<meta property="og:description" content="<?php echo sprintf($config->seo->searchPage->description, $term); ?>">
 	<meta property="og:image" content="https://amongdemons.com/minecraft/data/img/amongdemons_minecraft_fb.png">
 	<meta property="fb:app_id" content="649162062152755"/>
 
@@ -62,9 +62,10 @@ if(!empty($_GET['s'])){
                         <path fill="currentColor" d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path>
                     </svg>
                 </li>
-                <li> Cautare:
+                <li<?php if ($empty_search) echo ' class="empty_search"';?>>
+                    <span>Cautare:</span>
                     <form id="search_form" action="<?php echo $config->folder;?>/s/">
-                        <input id="search_input" placeholder="Search.." name="s" value="<?php echo $term; ?>" required />
+                        <input id="search_input" placeholder="Cauta.." name="s" value="<?php echo $term; ?>" required />
                         <svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                             <path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
                         </svg>
@@ -73,24 +74,30 @@ if(!empty($_GET['s'])){
             </ul>
         </div>
         <?php
-        $nr_per_page = 42;
-        $term = strtolower($term);
-        $sql = 'SELECT id, text, likes, dislikes FROM content WHERE lower(text) LIKE "%'.$term.'%" ORDER BY date DESC LIMIT '.($page-1)*$nr_per_page.', '.$nr_per_page;
-        $result = $conn->query($sql);
+        if (!$empty_search) {
+            $nr_per_page = 42;
+            $query =  str_replace(' ', '%',strtolower($term));
+            $sql = 'SELECT id, text, likes, dislikes FROM content WHERE lower(text) LIKE "%'.$query.'%" ORDER BY date DESC LIMIT '.($page-1)*$nr_per_page.', '.$nr_per_page;
+            $result = $conn->query($sql);
 
-        if ($result->num_rows > 0) {
-            // output data of each row
-            while($row = $result->fetch_assoc()) {
-                displaySingle($row['text'], $row['id'], $row['likes'], $row['dislikes']);
+            if ($result->num_rows > 0) {
+                // output data of each row
+                while($row = $result->fetch_assoc()) {
+                    displaySingle($row['text'], $row['id'], $row['likes'], $row['dislikes']);
+                }
+
+                $sql = "INSERT INTO search (query) VALUES ('".$term."') ON DUPLICATE KEY UPDATE count=count+1";
+                $conn->query($sql);
+
+                $sql = 'SELECT count(id) as count FROM content WHERE lower(text) LIKE "%'.$query.'%"';
+
+                $result = $conn->query($sql);
+                $total = $result->fetch_assoc();
+                echo pagination($total['count'], $config->folder.'/s/'.$term);
+            } else {
+                echo "0 results";
             }
-        } else {
-            echo "0 results";
         }
-        $sql = 'SELECT count(id) as count FROM content WHERE lower(text) LIKE "%'.$term.'%"';
-
-        $result = $conn->query($sql);
-        $total = $result->fetch_assoc();
-        echo pagination($total['count'], $config->folder.'/s/'.$term);
         ?>
     </div>
 
