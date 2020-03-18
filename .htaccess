@@ -3,5 +3,10 @@ RewriteEngine On
 RewriteRule ^glume/([0-9]+)$ glume/index.php?page=$1 [NC,L]
 RewriteRule ^gluma/([0-9]+)$ glume/single.php?id=$1 [NC,L]
 
+RewriteRule ^jokes/([0-9]+)$ jokes/index.php?page=$1 [NC,L]
+RewriteRule ^joke/([0-9]+)$ jokes/single.php?id=$1 [NC,L]
+
+RewriteRule ^quotes/([0-9]+)$ quotes/index.php?page=$1 [NC,L]
+RewriteRule ^quote/([0-9]+)$ quotes/single.php?id=$1 [NC,L]
 
 # RewriteRule ^single/([0-9]+)/(.*)$ single.php?id=$1&nav=$2 [NC,L]

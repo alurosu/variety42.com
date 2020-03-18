@@ -1,0 +1,4 @@
+Options +FollowSymLinks
+RewriteEngine On
+RewriteRule ^(.*)/([0-9]+)$ index.php?s=$1&page=$2 [NC,QSA,L]
+RewriteRule ^(.*)$ index.php?s=$1 [NC,QSA,L]

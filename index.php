@@ -4,24 +4,27 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Jokes</title>
-	<meta name="description" content="Java Edition 1.15.2 open to all, including non-premium users. Grief protection and always up to date.">
+	<title>variety42.com</title>
+	<meta name="description" content="variety42.com">
 
-	<meta property="og:title" content="Vanilla Minecraft Server - Among Demons">
-	<meta property="og:url" content="https://amongdemons.com/minecraft/">
+	<meta property="og:title" content="variety42.com">
 	<meta property="og:type" content="website" />
-	<meta property="og:description" content="Java Edition 1.15.2 open to all, including non-premium users. Grief protection and always up to date.">
-	<meta property="og:image" content="https://amongdemons.com/minecraft/data/img/amongdemons_minecraft_fb.png">
-	<meta property="fb:app_id" content="649162062152755"/>
+	<meta property="og:description" content="variety42.com">
+	<meta property="og:image" content="https://variety42.com<?php echo $config->folder; ?>/variety42_share.jpg">
+	<meta property="fb:app_id" content="616440488939771"/>
 
-	<link rel="shortcut icon" href="https://amongdemons.com/minecraft/data/img/AmongDemons_LogoSquare.png" />
+	<link rel="shortcut icon" href="/favicon.png" />
 	<link rel="stylesheet" href="data/css/main.css" />
 
 	<script type="text/javascript" src="data/js/main.js"></script>
 </head>
 
 <body>
-    <a href="/glume/">glume</a>
+    <a href="/jokes/">glume</a>
 </body>
 </html>
-<?php $conn->close(); ?>
+<?php
+header( 'Cache-Control: no-cache, must-revalidate' );
+header( 'Location: /jokes', true, 307 );
+exit;
+?>

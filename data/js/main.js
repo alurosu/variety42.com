@@ -66,6 +66,14 @@ jQuery(document).ready(function(){
             });
         }
     }
+
+    if (!localStorage.privacyHide)
+        jQuery(".privacy").fadeIn(0);
+
+    jQuery(".privacy .close").click(function() {
+        localStorage.privacyHide = true;
+        jQuery(".privacy").fadeOut(0);
+    });
 });
 
 jQuery(document).mouseup(function(e) {

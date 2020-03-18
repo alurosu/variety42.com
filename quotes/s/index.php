@@ -73,6 +73,7 @@ if(!empty($_GET['s'])){
                 </li>
             </ul>
         </div>
+
         <?php require_once('../../data/php/search.php'); ?>
     </div>
 
