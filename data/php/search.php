@@ -22,5 +22,38 @@ if (!$empty_search) {
     } else {
         echo "0 results";
     }
-}
-?>
+} else {?>
+<div class="more">
+    <div class="tags">
+        <h3><?php echo $config->seo->searchPage->topTags;?></h3>
+        <?php
+        $sql = 'SELECT t.id as id, t.name as name, count(c.id) as count FROM content c, tags t, content_tags ct WHERE c.id = ct.content_id AND t.id = ct.tag_id GROUP BY t.id HAVING count(c.id) > 10 ORDER BY count(c.id) DESC LIMIT 15';
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {?>
+                <a href="<?php echo $config->folder.'/t/'.urlencode($row['id']);?>"><?php echo $row['name']; ?></a><span>(<?php echo $row['count']; ?>)</span>
+                <?php
+            }
+        }
+        ?>
+    </div>
+    <div class="searches">
+        <h3><?php echo $config->seo->searchPage->topSearches;?></h3>
+        <?php
+        $sql = 'SELECT query, count FROM search ORDER BY count DESC LIMIT 15';
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {?>
+                <a href="<?php echo $config->folder.'/s/'.urlencode($row['query']);?>"><?php echo $row['query']; ?></a><span>(<?php echo $row['count']; ?>)</span>
+                <?php
+            }
+        }
+        ?>
+    </div>
+    <div class="all">
+        <a href="<?php echo $config->folder; ?>"><?php echo $config->seo->searchPage->buttonAll;?></a>
+    </div>
+</div>
+<?php } ?>
