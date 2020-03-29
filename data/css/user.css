@@ -1,0 +1,75 @@
+.user form {
+    text-align: center;
+}
+.user form textarea {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    height: 24em;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+    color: #333;
+    letter-spacing: .03em;
+    line-height: 1.8;
+    padding: 0 .5em;
+    margin-bottom: .25em;
+}
+.user form input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+    color: #333;
+    line-height: 1.8;
+    padding: 0 .5em;
+    margin-top: .25em;
+}
+.user form input[type="submit"] {
+    padding: .5em 1em;
+    margin-top: 2em;
+    font-size: 1em;
+    color: green;
+    background: #fff;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+.user form input[type="submit"]:hover {
+    color: #fff;
+    background: green;
+    border-color: green;
+}
+.user form ul {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+.user form ul.autocomplete{
+    margin-top: .25em;
+}
+.user form li {
+    list-style: none;
+    margin: .25em .5em .25em 0;
+    display: inline-block;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    color: green;
+    padding: 0 .5em;
+}
+.user form li:hover {
+    color: #fff;
+    background: green;
+    border-color: green;
+}
+.user form li span {
+    color: #ccc;
+}
+.user form li:hover span {
+    color: #fff;
+}
+.edit_notification {
+    font-size: .8em;
+    font-weight: normal;
+    float: right;
+    line-height: 2.6em;
+}
