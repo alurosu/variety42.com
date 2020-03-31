@@ -4,8 +4,6 @@ if (!file_exists("../".$folder."/config.php"))
     $folder = "jokes";
 
 $id = 1;
-if (is_numeric($_GET['id']) && $_GET['id'] > 0)
-    $id = $_GET['id'];
 require_once("../".$folder."/config.php");
 
 $conn = new mysqli($config->mysql->host, $config->mysql->user, $config->mysql->pass, $config->mysql->name);
@@ -14,11 +12,12 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 $message = '';
-if(isset($_POST['edit'])){
+if(isset($_POST['add'])){
     if(strlen($_POST['text'])>0){
         $text = $conn->real_escape_string($_POST['text']);
-        $sql ="UPDATE content SET date = '".time()."',text = '$text' WHERE id = '$id'";
+        $sql ="INSERT INTO content (text, date) VALUES ('$text','".time()."')";
         $conn->query($sql);
+        $id = $conn->insert_id;
         regenImage($id, $_POST['text'], $folder);
 
         $sql_insert_tags = "INSERT INTO content_tags (content_id, tag_id) VALUES";
@@ -36,10 +35,6 @@ if(isset($_POST['edit'])){
                 $sql_insert_tags.=",";
         }
 
-        //delete all content tags
-        $sql = "DELETE FROM content_tags WHERE content_id = $id";
-        $conn->query($sql);
-
         //add tags to content
         $conn->query($sql_insert_tags);
 
@@ -54,9 +49,9 @@ if(isset($_POST['edit'])){
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Edit <?php echo $folder." - id: ".$id;?></title>
+	<title>Add <?php echo $folder;?></title>
 
-	<meta property="og:title" content="Edit <?php echo $folder." - id: ".$id;?>">
+	<meta property="og:title" content="Add <?php echo $folder;?>">
 	<meta property="og:type" content="website" />
 	<meta property="og:description" content="User Panel">
 	<meta property="og:image" content="https://variety42.com<?php echo $config->folder; ?>/variety42_share.jpg">
@@ -76,48 +71,15 @@ if(isset($_POST['edit'])){
 <body>
     <?php require_once("../".$folder."/data/php/menu.php"); ?>
     <div class="wrapper user">
-        <h3 style="margin-bottom: 0;">
-            Edit <?php echo $folder." - id: ".$id;?>
-            <div class="edit_notification"> <?php echo $message; ?></div>
-        </h3>
-        <div class="delete_form_trigger">Delete</div>
-        <form action="/u/delete.php" method="post" class="delete_form">
-            <label>Are you sure?</label>
-            <input type="hidden" name="id" value="<?php echo $id;?>">
-            <input type="hidden" name="folder" value="<?php echo $folder;?>">
-            <input type="submit" name="delete" value="Yes">
+        <h3>Add <?php echo $folder;?><div class="edit_notification"> <?php echo $message; ?></div></h3>
+        <form action="" method="post">
+            <textarea name="text"></textarea>
+            <ul class="tags">
+            </ul>
+            <input type="text" class="suggested_tag" data-folder="<?php echo $folder; ?>" placeholder="Add tag" value="">
+            <ul class="autocomplete"></ul>
+            <input type="submit" name="add" value="Add">
         </form>
-        <?php
-        $sql = "SELECT text FROM content WHERE id = ".$id;
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-            $single = $result->fetch_assoc();
-            ?>
-            <form action="" method="post">
-                <textarea name="text"><?php echo stripslashes($single['text']);?></textarea>
-                <ul class="tags">
-                    <?php
-                    $sql = 'SELECT t.name as name, t.id as id FROM content_tags ct, tags t WHERE ct.tag_id = t.id AND ct.content_id = '.$id;
-                    $result = $conn->query($sql);
-
-                    if ($result->num_rows > 0) {
-                        // output data of each row
-                        while($tag = $result->fetch_assoc()) { ?>
-                            <li>
-                                <?php echo $tag['name']; ?>
-                                <span>x</span>
-                                <input type="hidden" name="tag_names[]" value="<?php echo $tag['name'];?>">
-                                <input type="hidden" name="tag_ids[]" value="<?php echo $tag['id'];?>">
-                            </li>
-                        <?php }
-                    }
-                    ?>
-                </ul>
-                <input type="text" class="suggested_tag" data-folder="<?php echo $folder; ?>" placeholder="Add tag" value="">
-                <ul class="autocomplete"></ul>
-                <input type="submit" name="edit" value="Edit">
-            </form>
-        <?php } else echo "There are no ".$folder." with id: ".$id; ?>
     </div>
 
     <?php require_once('../data/php/footer.php'); ?>

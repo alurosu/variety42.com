@@ -1,8 +1,13 @@
 jQuery(document).ready(function(){
     console.log('user.js: loaded!');
 
-    jQuery('.user form .tags li').click(function(){
+    jQuery('.user form .tags').on("click","li", function(){
         jQuery(this).remove();
+    });
+
+    jQuery('.delete_form_trigger').click(function(){
+        jQuery(this).remove();
+        jQuery('.delete_form').fadeIn(0);
     });
 
     jQuery('.user form .suggested_tag').on('keypress',function(e) {

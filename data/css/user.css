@@ -73,3 +73,23 @@
     float: right;
     line-height: 2.6em;
 }
+form.delete_form {
+    font-weight: normal;
+    font-size: .8em;
+    display: none;
+    text-align: left;
+}
+form.delete_form input[type="submit"], form.delete_form input[type="submit"]:hover {
+    color: red;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    background: white;
+}
+.delete_form_trigger {
+    font-size: .8em;
+    color: red;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: normal;
+}
