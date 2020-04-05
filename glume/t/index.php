@@ -43,11 +43,14 @@ if ($result->num_rows > 0) {
 
 	<script type="text/javascript" src="/data/js/jquery.js"></script>
 	<script type="text/javascript" src="/data/js/main.js"></script>
+
+    <?php require_once('../../data/php/header.php'); ?>
 </head>
 
 <body>
     <?php require_once("../data/php/menu.php"); ?>
     <div class="wrapper">
+        <?php require_once("../data/php/ads/header.php"); ?>
         <div class="breadcrumbs">
             <ul>
                 <li>
@@ -70,14 +73,18 @@ if ($result->num_rows > 0) {
             </ul>
         </div>
         <?php
-        $nr_per_page = 42;
+        $nr_per_page = 20;
         $sql = 'SELECT c.id, c.text, c.likes, c.dislikes FROM content c, content_tags ct WHERE ct.tag_id = '.$tag_id.' AND ct.content_id = c.id ORDER BY date DESC LIMIT '.($page-1)*$nr_per_page.', '.$nr_per_page;
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
             // output data of each row
+            $i=1;
             while($row = $result->fetch_assoc()) {
                 displaySingle($row['text'], $row['id'], $row['likes'], $row['dislikes']);
+                if ($i == 5 || $i == 10 || $i == 15)
+                    require("../data/php/ads/list.php");
+                $i++;
             }
 
             $sql = 'SELECT count(c.id) as count FROM content c, content_tags ct WHERE ct.tag_id = '.$tag_id.' AND ct.content_id = c.id';

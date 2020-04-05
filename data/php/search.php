@@ -1,14 +1,18 @@
 <?php
 if (!$empty_search) {
-    $nr_per_page = 42;
+    $nr_per_page = 20;
     $query =  str_replace(' ', '%',strtolower($term));
     $sql = 'SELECT id, text, likes, dislikes FROM content WHERE lower(text) LIKE "%'.$query.'%" ORDER BY date DESC LIMIT '.($page-1)*$nr_per_page.', '.$nr_per_page;
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
         // output data of each row
+        $i=1;
         while($row = $result->fetch_assoc()) {
             displaySingle($row['text'], $row['id'], $row['likes'], $row['dislikes']);
+            if ($i == 5 || $i == 10 || $i == 15)
+                require("../data/php/ads/list.php");
+            $i++;
         }
 
         $sql = "INSERT INTO search (query) VALUES ('".$term."') ON DUPLICATE KEY UPDATE count=count+1";
@@ -27,7 +31,7 @@ if (!$empty_search) {
     <div class="tags">
         <h3><?php echo $config->seo->searchPage->topTags;?></h3>
         <?php
-        $sql = 'SELECT t.id as id, t.name as name, count(c.id) as count FROM content c, tags t, content_tags ct WHERE c.id = ct.content_id AND t.id = ct.tag_id GROUP BY t.id HAVING count(c.id) > 10 ORDER BY count(c.id) DESC LIMIT 15';
+        $sql = 'SELECT t.id as id, t.name as name, count(c.id) as count FROM content c, tags t, content_tags ct WHERE c.id = ct.content_id AND t.id = ct.tag_id GROUP BY t.id HAVING count(c.id) > 5 ORDER BY count(c.id) DESC LIMIT 15';
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
@@ -41,7 +45,7 @@ if (!$empty_search) {
     <div class="searches">
         <h3><?php echo $config->seo->searchPage->topSearches;?></h3>
         <?php
-        $sql = 'SELECT query, count FROM search ORDER BY count DESC LIMIT 15';
+        $sql = 'SELECT query, count FROM search WHERE count > 5 ORDER BY count DESC LIMIT 15';
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {

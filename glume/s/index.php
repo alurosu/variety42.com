@@ -39,11 +39,14 @@ if(!empty($_GET['s'])){
 
 	<script type="text/javascript" src="/data/js/jquery.js"></script>
 	<script type="text/javascript" src="/data/js/main.js"></script>
+
+    <?php require_once('../../data/php/header.php'); ?>
 </head>
 
 <body>
     <?php require_once("../data/php/menu.php"); ?>
     <div class="wrapper">
+        <?php $onlymobile = true; require_once("../data/php/ads/header.php"); ?>
         <div class="breadcrumbs">
             <ul>
                 <li>

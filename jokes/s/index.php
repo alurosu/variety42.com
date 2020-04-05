@@ -39,11 +39,14 @@ if(!empty($_GET['s'])){
 
 	<script type="text/javascript" src="/data/js/jquery.js"></script>
 	<script type="text/javascript" src="/data/js/main.js"></script>
+
+    <?php require_once('../../data/php/header.php'); ?>
 </head>
 
 <body>
     <?php require_once("../data/php/menu.php"); ?>
     <div class="wrapper">
+        <?php $onlymobile = true; require_once("../data/php/ads/header.php"); ?>
         <div class="breadcrumbs">
             <ul>
                 <li>
@@ -57,15 +60,15 @@ if(!empty($_GET['s'])){
                     </svg>
                 </li>
                 <li>
-                    <a href="<?php echo $config->folder; ?>" title="Glume">Glume</a>
+                    <a href="<?php echo $config->folder; ?>" title="Jokes">Jokes</a>
                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="caret-right" class="svg-inline--fa fa-caret-right fa-w-6" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512">
                         <path fill="currentColor" d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path>
                     </svg>
                 </li>
                 <li<?php if ($empty_search) echo ' class="empty_search"';?>>
-                    <span>Cautare:</span>
+                    <span>Search:</span>
                     <form id="search_form" action="<?php echo $config->folder;?>/s/">
-                        <input id="search_input" placeholder="Cauta.." name="s" value="<?php echo $term; ?>" required />
+                        <input id="search_input" placeholder="Search.." name="s" value="<?php echo $term; ?>" required />
                         <svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                             <path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
                         </svg>

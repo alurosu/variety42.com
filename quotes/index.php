@@ -33,11 +33,14 @@ if ($conn->connect_error) {
 
 	<script type="text/javascript" src="/data/js/jquery.js"></script>
 	<script type="text/javascript" src="/data/js/main.js"></script>
+
+    <?php require_once('../data/php/header.php'); ?>
 </head>
 
 <body>
     <?php require_once("data/php/menu.php"); ?>
     <div class="wrapper">
+        <?php require_once("data/php/ads/header.php"); ?>
         <div class="breadcrumbs">
             <ul>
                 <li>
@@ -50,18 +53,22 @@ if ($conn->connect_error) {
                         <path fill="currentColor" d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path>
                     </svg>
                 </li>
-                <li> <a href="<?php echo $config->folder; ?>" title="Glume">Glume</a></li>
+                <li> <a href="<?php echo $config->folder; ?>" title="Quotes">Quotes</a></li>
             </ul>
         </div>
         <?php
-        $nr_per_page = 42;
+        $nr_per_page = 20;
         $sql = 'SELECT id, text, likes, dislikes FROM content ORDER BY date DESC LIMIT '.($page-1)*$nr_per_page.', '.$nr_per_page;
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
             // output data of each row
+            $i=1;
             while($row = $result->fetch_assoc()) {
                 displaySingle($row['text'], $row['id'], $row['likes'], $row['dislikes']);
+                if ($i == 5 || $i == 10 || $i == 15)
+                    require("data/php/ads/list.php");
+                $i++;
             }
         } else {
             echo "0 results";

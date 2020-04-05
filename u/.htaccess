@@ -1,3 +1,8 @@
+AuthType Basic
+AuthName "Restricted Content"
+AuthUserFile /var/www/html/variety42.com/www/u/.htpasswd
+Require valid-user
+
 Options +FollowSymLinks
 RewriteEngine On
-RewriteRule ^(.*)$ index.php?user=$1 [NC,L]
+#RewriteRule ^(.*)$ index.php?user=$1 [NC,L]

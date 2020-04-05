@@ -33,11 +33,14 @@ if ($conn->connect_error) {
 
 	<script type="text/javascript" src="/data/js/jquery.js"></script>
 	<script type="text/javascript" src="/data/js/main.js"></script>
+
+    <?php require_once('../data/php/header.php'); ?>
 </head>
 
 <body>
     <?php require_once("data/php/menu.php"); ?>
     <div class="wrapper">
+        <?php require_once("data/php/ads/header.php"); ?>
         <div class="breadcrumbs">
             <ul>
                 <li>
@@ -54,14 +57,18 @@ if ($conn->connect_error) {
             </ul>
         </div>
         <?php
-        $nr_per_page = 42;
+        $nr_per_page = 20;
         $sql = 'SELECT id, text, likes, dislikes FROM content ORDER BY date DESC LIMIT '.($page-1)*$nr_per_page.', '.$nr_per_page;
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
             // output data of each row
+            $i=1;
             while($row = $result->fetch_assoc()) {
                 displaySingle($row['text'], $row['id'], $row['likes'], $row['dislikes']);
+                if ($i == 5 || $i == 10 || $i == 15)
+                    require("data/php/ads/list.php");
+                $i++;
             }
         } else {
             echo "0 results";

@@ -8,6 +8,9 @@ $config->seo->firstPage->description = "Check out a huge list of inspirational a
 
 $config->seo->tagPage->title = "%s - Page %d - Inspirational Quotes";
 $config->seo->searchPage->title = "Search%s - Page %d - Inspirational Quotes";
+$config->seo->searchPage->topTags = "Top Tags";
+$config->seo->searchPage->topSearches = "Top Searches";
+$config->seo->searchPage->buttonAll = "View all";
 
 // MySQL variables
 $config->mysql->host = "";

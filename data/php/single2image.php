@@ -10,7 +10,7 @@ function single2image($id, $text) {
         $green = imagecolorallocate($img, 0, 128, 0);
         $logo = "variety42.com";
         $font = "../data/font/Arial.ttf";
-        $font_size = ($img_h-30) / 7.7;
+        $font_size = ($img_h-30) / 7.9;
 
         $text = wordwrap($text, 26, "\n");
         $lines = explode("\n", $text);

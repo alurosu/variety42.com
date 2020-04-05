@@ -43,11 +43,14 @@ if ($result->num_rows > 0) {
 
 	<script type="text/javascript" src="/data/js/jquery.js"></script>
 	<script type="text/javascript" src="/data/js/main.js"></script>
+
+    <?php require_once('../../data/php/header.php'); ?>
 </head>
 
 <body>
     <?php require_once("../data/php/menu.php"); ?>
     <div class="wrapper">
+        <?php require_once("../data/php/ads/header.php"); ?>
         <div class="breadcrumbs">
             <ul>
                 <li>
@@ -61,7 +64,7 @@ if ($result->num_rows > 0) {
                     </svg>
                 </li>
                 <li>
-                    <a href="<?php echo $config->folder; ?>" title="Glume">Glume</a>
+                    <a href="<?php echo $config->folder; ?>" title="Jokes">Jokes</a>
                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="caret-right" class="svg-inline--fa fa-caret-right fa-w-6" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512">
                         <path fill="currentColor" d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path>
                     </svg>
@@ -70,14 +73,18 @@ if ($result->num_rows > 0) {
             </ul>
         </div>
         <?php
-        $nr_per_page = 42;
+        $nr_per_page = 20;
         $sql = 'SELECT c.id, c.text, c.likes, c.dislikes FROM content c, content_tags ct WHERE ct.tag_id = '.$tag_id.' AND ct.content_id = c.id ORDER BY date DESC LIMIT '.($page-1)*$nr_per_page.', '.$nr_per_page;
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
             // output data of each row
+            $i=1;
             while($row = $result->fetch_assoc()) {
                 displaySingle($row['text'], $row['id'], $row['likes'], $row['dislikes']);
+                if ($i == 5 || $i == 10 || $i == 15)
+                    require("../data/php/ads/list.php");
+                $i++;
             }
 
             $sql = 'SELECT count(c.id) as count FROM content c, content_tags ct WHERE ct.tag_id = '.$tag_id.' AND ct.content_id = c.id';

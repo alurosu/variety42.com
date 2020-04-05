@@ -57,8 +57,13 @@ a {
 	background-color: #fff;
 }
 .menu .logo {
-	padding: .5em 0 .5em 1em;
+    padding: .7em 0 0 1em;
 	display: inline-block;
+    line-height: 1;
+}
+.menu .logo div {
+    color: #333;
+    font-size: .6em;
 }
 .menu .logo img {
 	height: 2.5em;
@@ -90,7 +95,7 @@ a {
 }
 .wrapper {
 	max-width: 1000px;
-    padding: 3em .8em 1em .8em;
+    padding: 3em .8em 0 .8em;
 	width: 100%;
 	box-sizing: border-box;
 }
@@ -213,6 +218,7 @@ a {
 .pagination {
 	font-size: .7em;
     text-align: center;
+	padding-bottom: 2em;
 }
 .pagination > * {
 	padding: 0 .3em;
@@ -252,6 +258,19 @@ a {
 }
 .single.list:first-child {
     margin-top: 1.5em;
+}
+.ads {
+	margin: auto;
+}
+.single.ads {
+    padding-bottom: 2em;
+    text-align: center;
+}
+.ads div {
+	margin: auto;
+}
+.ads.top div {
+	margin-top: 1em;
 }
 .share-buttons, .error {
 	display: flex;
@@ -407,8 +426,8 @@ a {
 }
 .footer {
 	margin-top: auto;
-	padding-top: 2em;
 	font-size: .9em;
+	padding-top: 1em;
 }
 .footer ul {
 	margin: 0;
@@ -426,14 +445,16 @@ a {
 .privacy {
 	font-size: .7em;
 	position: fixed;
-	left: 1em;
+	left: 50%;
 	bottom: 1em;
 	background: #fff;
 	border: 1px solid #ccc;
 	padding: .5em 1em;
 	display: none;
 	box-sizing: border-box;
-	margin-right: 1em;
+    transform: translateX(-50%);
+    max-width: calc( 100% - 2em );
+    width: 68em;
 }
 .privacy a {
 	color: #666;
@@ -444,4 +465,134 @@ a {
 	color: green;
 	float: right;
 	padding-left: 1em;
+}
+.more {
+	text-align: left;
+}
+.more span {
+	color: #999;
+	padding-right: 1.5em;
+	font-size: 0.8em;
+    padding-left: .4em;
+}
+.more .all {
+	text-align: center;
+	margin-top: 2em;
+	padding: 1em 0;
+}
+.more .all a {
+	font-size: .9em;
+}
+.similar {
+	padding: 2em 0;
+	display: -ms-flexbox;
+	display: flex;
+}
+.similar a {
+	display: -ms-flexbox;
+	display: flex;
+	flex-direction: column;
+    width: 17%;
+    border: 1px solid #fff;
+    padding: .2em .5em;
+    background: border-box;
+	margin: 0 auto;
+	color: #333;
+    font-size: .7em;
+	text-align: left;
+}
+.similar div {
+    margin-top: auto;
+    text-align: right;
+    width: 100%;
+    padding-bottom: .2em;
+}
+.similar a svg {
+	color: green;
+	height: .9em;
+}
+.similar a:hover {
+	border-color: green;
+}
+.similar a:first-child {
+	margin-left: 0;
+}
+.similar a:last-child {
+	margin-right: 0;
+}
+.similar .h_separator {
+	width: 1px;
+	margin: 0;
+	background: #ddd;
+}
+
+.burger .b {
+	display: inline-block;
+	cursor: pointer;
+    padding-right: 1em;
+    margin-left: .5em;
+}
+.bar1, .bar2, .bar3 {
+	width: 1em;
+	height: .15em;
+	background-color: #333;
+	margin: .15em;
+	transition: 0.4s;
+}
+.burger:hover .b > div {
+	background-color: green;
+}
+.change .bar1 {
+	-webkit-transform: rotate(-45deg) translate(-.2em, .2em);
+	transform: rotate(-45deg) translate(-.2em, .2em);
+}
+.change .bar2 {
+	opacity: 0;
+}
+.change .bar3 {
+	-webkit-transform: rotate(45deg) translate(-.22em, -.22em);
+	transform: rotate(45deg) translate(-.22em, -.22em);
+}
+.dropdown {
+    position: absolute;
+    top: 2.8em;
+    right: 0;
+	display: none;
+    border: 1px solid #ddd;
+    z-index: 999;
+	background: #fff;
+}
+.menu li .dropdown a {
+    padding: .4em .9em;
+	color: green;
+}
+.change .dropdown {
+	display: block;
+}
+
+@media only screen and (max-width: 800px) {
+	.similar a {
+		width: 29%;
+	}
+	.similar a:first-child {
+		display: none;
+	}
+	.similar a:last-child {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 500px) {
+	.similar {
+		display: block;
+	}
+	.similar a {
+		display: block;
+		width: auto;
+		margin-bottom: 1em;
+		border-bottom: 1px solid #ddd;
+	}
+	.similar .h_separator {
+		display: none;
+	}
 }

@@ -1,12 +1,3 @@
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-44609502-30"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-44609502-30');
-</script>
 <div class="share-buttons hide">
     <div class="share-buttons-box">
         <div class="close">
@@ -65,19 +56,29 @@
         Dismiss
     </div>
 </div>
+<?php require("/var/www/html/variety42.com/www".$config->folder."/data/php/ads/footer.php"); ?>
 <div class="footer">
     <ul>
         <li>
-            <a href="/jokes">Jokes</a> -
+            <a href="/jokes/s/">Jokes</a> -
         </li>
         <!--<li>
-            <a href="/quotes">Quotes</a> -
+            <a href="/quotes/s/">Quotes</a> -
         </li>-->
         <li>
-            <a href="/glume">Glume</a>
+            <a href="/glume/s/">Glume</a>
         </li>
     </ul>
     <div class="copyright">
         Copyright 2020 © variety42.com
     </div>
 </div>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-44609502-30"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-44609502-30');
+</script>

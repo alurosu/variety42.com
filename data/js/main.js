@@ -87,3 +87,7 @@ jQuery(document).mouseup(function(e) {
         jQuery(".error").addClass("hide");
     }
 });
+
+function burger(x) {
+    x.classList.toggle("change");
+}

@@ -8,6 +8,9 @@ $config->seo->firstPage->description = "Chuck Norris jokes, Yo mamma jokes, puns
 
 $config->seo->tagPage->title = "%s - Page %d - Funny Jokes and Puns";
 $config->seo->searchPage->title = "Search%s - Page %d - Funny Jokes and Puns";
+$config->seo->searchPage->topTags = "Top Tags";
+$config->seo->searchPage->topSearches = "Top Searches";
+$config->seo->searchPage->buttonAll = "View all";
 
 // MySQL variables
 $config->mysql->host = "";

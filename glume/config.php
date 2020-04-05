@@ -8,6 +8,9 @@ $config->seo->firstPage->description = "Glume, bancuri, poante, comedie, umor, a
 
 $config->seo->tagPage->title = "%s - Pagina %d - Bancuri si Glume";
 $config->seo->searchPage->title = "Cautare%s - Pagina %d - Bancuri si Glume";
+$config->seo->searchPage->topTags = "Top Categorii";
+$config->seo->searchPage->topSearches = "Top Cautari";
+$config->seo->searchPage->buttonAll = "Vezi toate";
 
 // MySQL variables
 $config->mysql->host = "";
